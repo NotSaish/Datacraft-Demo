@@ -120,4 +120,5 @@ To visually see the stored data inside Minecraft, run:
 
 Open the map in-game to view the encoded content.
 
-**EASY PEASY 🙂**
+**EASY PEASY**
+
