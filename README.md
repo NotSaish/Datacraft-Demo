@@ -69,7 +69,7 @@ Make sure your terminal / PowerShell is opened **inside the cloned repository fo
 
 ---
 
-### 3️⃣ Encode a File into Minecraft Maps
+### 3️⃣ Encode a File into Minecraft Maps **That FIle Should be in Repo Folder**
 
 ```bash
 python datacraft_demo.py encode <FileName> "C:\Users\User\AppData\Roaming\.minecraft\saves\<MinecraftWorldName>"
@@ -121,4 +121,5 @@ To visually see the stored data inside Minecraft, run:
 Open the map in-game to view the encoded content.
 
 **EASY PEASY**
+
 
