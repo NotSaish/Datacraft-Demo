@@ -2,6 +2,7 @@
 # © 2025 Mcaddon
 # Source-available for education only.
 # Redistribution or modification is prohibited.
+#आरम्भं कुर्मः
 
 import sys
 import os
@@ -14,7 +15,7 @@ except ImportError:
     print("ERROR: pip install nbtlib")
     sys.exit(1)
 
-MAP_SIZE = 128 * 128  # 16384 bytes per map
+MAP_SIZE = 128 * 128  # प्रत्येक map में १६३८४ बाइट्स डेटा संग्रहित किया जा सकता है।
 
 def bytes_to_colors(data):
     """
@@ -26,7 +27,7 @@ def bytes_to_colors(data):
     
     colors = []
     for byte in data[:MAP_SIZE]:
-        # Convert to signed byte (-128 to 127)
+        # हस्ताक्षरित बाइट में परिवर्तित करें (-१२८ से १२७)
         signed = byte if byte < 128 else byte - 256
         colors.append(signed)
     
@@ -38,7 +39,7 @@ def colors_to_bytes(colors):
     """
     data = bytearray()
     for color in colors:
-        # Convert signed byte back to unsigned (0-255)
+        # हस्ताक्षरित बाइट को असाइनड (०–२५५) में बदलें
         unsigned = color if color >= 0 else color + 256
         data.append(unsigned)
     return bytes(data)
@@ -105,7 +106,7 @@ def encode_file(input_file, world_path, start_id=1000000):
     print(f"🗺️  Maps: {num_maps}")
     print(f"🆔 Range: {start_id} to {start_id + num_maps - 1}\n")
     
-    # Create maps
+    # मानचित्र बनाएँ
     for i in range(num_maps):
         start_byte = i * MAP_SIZE
         end_byte = min((i + 1) * MAP_SIZE, file_size)
@@ -128,7 +129,7 @@ def encode_file(input_file, world_path, start_id=1000000):
         print(f"   /give @p filled_map{{map:{start_id + 1}}}")
         print(f"   ... (up to {start_id + num_maps - 1})\n")
     
-    # Save metadata with exact file size
+    # सटीक फ़ाइल आकार के साथ मेटाडेटा सहेजें
     meta_file = os.path.join(data_dir, f"mapstore_meta_{start_id}.txt")
     with open(meta_file, "w") as f:
         f.write(f"Filename: {os.path.basename(input_file)}\n")
@@ -149,7 +150,7 @@ def decode_maps(world_path, start_id, num_maps, output_file):
         print(f"❌ Data folder not found: {data_dir}")
         return False
     
-    # Try to read metadata for original size
+    # मूल आकार के लिए मेटाडेटा पढ़ने का प्रयास
     meta_file = os.path.join(data_dir, f"mapstore_meta_{start_id}.txt")
     original_size = None
     
@@ -166,7 +167,7 @@ def decode_maps(world_path, start_id, num_maps, output_file):
     
     output_data = bytearray()
     
-    # Read all maps
+    # सभी मानचित्र पढ़ें
     for i in range(num_maps):
         map_id = start_id + i
         map_file = os.path.join(data_dir, f"map_{map_id}.dat")
@@ -175,37 +176,37 @@ def decode_maps(world_path, start_id, num_maps, output_file):
             print(f"❌ Map not found: map_{map_id}.dat")
             return False
         
-        # Load NBT
+        # NBT लोड करें
         nbt_file = nbtlib.load(map_file, gzipped=True)
         
-        # Get colors array
+        # रंग ऐरे प्राप्त करें
         if hasattr(nbt_file, 'root'):
             colors = nbt_file.root["data"]["colors"]
         else:
             colors = nbt_file["data"]["colors"]
         
-        # Convert back to bytes
+        # वापस बाइट्स में बदलें
         chunk_bytes = colors_to_bytes(colors)
         output_data.extend(chunk_bytes)
         
         progress = (i + 1) / num_maps * 100
         print(f"[{progress:5.1f}%] map_{map_id}.dat")
     
-    # Trim to original size (remove padding)
+    # मूल आकार तक काटें (पैडिंग हटाएँ)
     if original_size and original_size < len(output_data):
         print(f"\n✂️  Trimming padding: {len(output_data):,} → {original_size:,} bytes")
         output_data = output_data[:original_size]
     else:
         print(f"\n⚠️  Warning: No metadata found - file may have padding")
     
-    # Write output
+    # आउटपुट लिखें
     with open(output_file, "wb") as f:
         f.write(output_data)
     
     print(f"\n✅ Decoded: {output_file}")
     print(f"📊 Size: {len(output_data):,} bytes ({len(output_data)/1024:.2f} KB)\n")
     
-    # Verify it's not all zeros
+    # जाँचें कि फ़ाइल पूरी तरह शून्य तो नहीं
     if all(b == 0 for b in output_data[:1000]):
         print("⚠️  WARNING: File appears to be blank/corrupted!")
         print("   Check if maps were created correctly\n")
@@ -255,3 +256,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
