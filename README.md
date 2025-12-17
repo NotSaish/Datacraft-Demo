@@ -18,6 +18,7 @@ This repository exists for:
 
 The commercial software version includes:
 
+* Unlimited File Size 
 * Full GUI
 * Optimized encoding pipeline
 * Live image/video preview directly from Minecraft
@@ -121,6 +122,7 @@ To visually see the stored data inside Minecraft, run:
 Open the map in-game to view the encoded Data.
 
 **EASY PEASY**
+
 
 
 
