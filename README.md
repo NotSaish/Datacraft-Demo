@@ -118,9 +118,10 @@ To visually see the stored data inside Minecraft, run:
 /give @p filled_map[minecraft:map_id=<AnyMapIDFromThatFile>]
 ```
 
-Open the map in-game to view the encoded content.
+Open the map in-game to view the encoded Data.
 
 **EASY PEASY**
+
 
 
 
