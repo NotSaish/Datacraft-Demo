@@ -2,7 +2,7 @@
 
 This repository contains an **early CLI-based prototype** of Datacraft.
 
-Datacraft is a concept that allows **storing arbitrary data inside Minecraft map files** using controlled noise encoding.
+Datacraft is a concept by **Mcaddon** that allows **storing data inside Minecraft map files** using controlled noise encoding.
 
 ---
 
@@ -121,6 +121,7 @@ To visually see the stored data inside Minecraft, run:
 Open the map in-game to view the encoded Data.
 
 **EASY PEASY**
+
 
 
 
