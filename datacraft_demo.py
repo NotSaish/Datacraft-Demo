@@ -16,7 +16,7 @@ except ImportError:
     sys.exit(1)
 
 MAP_SIZE = 128 * 128  # Maximum 16384 bytes can be stored in one map
-MAX_FILE_SIZE = 5 * 1024 * 1024  # 5 MB max file size (Don't try to change this, buy paid version!)
+MAX_FILE_SIZE = 5 * 1024 * 1024  # 5 MB max file size (👁️Don't try to change this, buy paid version!i
 
 def bytes_to_colors(data_bytes):
     """Bytes → Minecraft map colors"""
@@ -224,4 +224,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
